@@ -1,0 +1,238 @@
+/* Charity: water Brand Colors
+
+Primary Colors:
+- Yellow:     #FFC907
+- Blue:       #2E9DF7
+
+Secondary Colors:
+- Light Blue: #8BD1CB
+- Green:      #4FCB53
+- Orange:     #FF902A
+- Red:        #F5402C
+- Dark Green: #159A48
+- Pink:       #F16061
+
+Web Colors:
+- Background Dark:           #222520
+- Background Light Primary:  #FAF7F0
+- Background Light Seconary: #F8EED3
+*/
+
+/* Font */
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Inter", sans-serif;
+  font-style: normal;
+  font-optical-sizing: auto;
+  font-weight: 300;
+  font-size: 18px;
+  background-color: #FAF7F0;
+}
+
+h1, h2 {
+  font-weight: 200;
+  text-align: left;
+  width: 80vw;
+}
+
+h1 {
+  font-size: 2em;
+  margin: 30px auto 10px;
+  
+}
+
+h2 {
+  font-size: 1.5em;
+  margin: 10px auto 20px;
+}
+
+.controls {
+  width: fit-content;
+  scale: 1.2;
+  position: absolute;
+  top: 75px;
+  right: 10vw;
+}
+
+.controls #reset {
+  display: none;
+}
+
+button {
+  padding: 10px;
+  background-color: #FFC907;
+  border: solid 2px #dfdfd7;
+  border-radius: 5px;
+  width: fit-content;
+  height: 40px;
+  margin: auto;
+}
+
+.racetrack {
+  padding: 20px;
+  background-color: #F8EED3;
+  width: 90vw;
+  border: solid 2px #dfdfd7;
+  border-radius: 20px;
+  margin: auto;
+  display: block;
+  position: relative;
+}
+
+.racetrack .lane {
+  height: 50px;
+  border-radius: 40px;
+  margin: 40px auto;
+  position: relative;
+}
+
+.racetrack .lane .jerrycan {
+  position: absolute;
+  top: -15px;
+  height: 75px;
+}
+
+#lane1 { background-color: #947d71 }
+#lane2 { background-color: #016e59; }
+#lane3 { background-color: #a1adb9; }
+#lane4 { background-color: #da6726; }
+
+.racetrack .lane .progress {
+  width: 52.5px;
+  height: 100%;
+  border-radius: 15px;
+  background-color: #2E9DF7;
+  transition: background-color 1s ease;
+}
+
+h4 {
+  font-weight: 200;
+  font-size: 2em;
+  text-align: center;
+  margin: 40px auto 30px;
+}
+
+#bets-trivia {
+  width: 90vw;
+  margin: 0 auto 20px;
+  /* display: flex;
+  justify-content: space-around;
+  align-items: center; */
+}
+
+#bets, #trivia {
+  margin: 40px 0 5vh;
+}
+
+#bets {
+  background-color: #F8EED3;
+  padding: 0px;
+  border: solid 2px #dfdfd7;
+  border-radius: 40px;
+  height: fit-content;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#bets #bet-info {
+  font-size: 1.9em;
+  text-align: center;
+  min-width: fit-content;
+  min-height: 20px;
+  height: fit-content;
+  width: 100%;
+  max-width: 40%;
+  margin: 20px 10px;
+}
+
+#bets #bet-info #bet-amount {
+  display: flex-inline;
+  align-items: center;
+}
+
+#bets #bet-info button {
+  padding: 7px;
+  height: fit-content;
+  border-radius: 50%;
+  scale: 1.2;
+}
+
+#trivia {
+  text-align: center;
+  background-color: #F8EED3;
+  padding: 20px;
+  border: solid 2px #dfdfd7;
+  border-radius: 40px;
+  height: fit-content;
+}
+
+#trivia #fact {
+  width: 80%;
+  margin: auto;
+}
+
+#trivia button {
+  padding: 5px;
+  margin: 10px 5px 10px;
+}
+
+p {
+  text-align: center;
+  margin: 0 10vw 50px;
+  line-height: 1.5; 
+  list-style-type: disc;
+}
+
+@media screen and (max-width: 720px) {
+  body {
+    font-size: 16px;
+  }
+
+  h1, h2 {
+    text-align: center;
+  }
+
+  h1 {
+    margin: 30px auto 10px;
+  }
+
+  h2 {
+    margin: 10px auto 20px;
+  }
+
+  .controls {
+    width: fit-content;
+    margin: 20px auto;
+    scale: 1.4;
+    top: initial;
+    right: initial;
+    display: block;
+    position: relative;
+  }
+
+  .racetrack {
+    position: initial;
+  }
+
+  #bets-trivia {
+    margin: auto;
+    display: block;
+  }
+
+  #bets, #trivia {
+    width: 90vw;
+    margin: 20px auto 5vw;
+  }
+
+  #bets.bet-info {
+    scale: 1.5;
+  }
+}

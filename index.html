@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jerry for Position</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  
+  <h1>Jerry for Position</h1>
+  <h2>Game Prototype for charity: water</h2>
+  <div class="controls">
+    <button id="reset">Reset</button>
+    <button id="run">Run</button>
+  </div>
+  <div class="racetrack">
+    <div class="lane" id="lane1">
+      <div class="progress"></div>
+      <img class="jerrycan" src="img/water-can-transparent.png"></img>
+    </div>
+    <div class="lane" id="lane2">
+      <div class="progress"></div>
+      <img class="jerrycan" src="img/water-can-transparent.png"></img>
+    </div>
+    <div class="lane" id="lane3">
+      <div class="progress"></div>
+      <img class="jerrycan" src="img/water-can-transparent.png"></img>
+    </div>
+    <div class="lane" id="lane4">
+      <div class="progress" ></div>
+      <img class="jerrycan" src="img/water-can-transparent.png"></img>
+    </div>
+  </div>
+  <h4>Score: <span id="score">0</span></h4>
+  <div id="bets-trivia">
+    <div id="trivia">
+      <h3 id="fact">charity: water helps bring clean and safe water to every person on the planet</h3>
+      <button id="falseBtn">False</button>
+      <button id="trueBtn">True</button>
+    </div>
+    <div id="bets">
+      <div id="bet-info">
+        Place Your Bet <br> 
+        <button id="minus">-</button> 
+        <span id="bet-amount">0</span>
+        <button id="plus">+</button>
+      </div>
+    </div>
+  </div>
+  <p>
+    How to Play: 
+    <br>
+    Bet on the Orange Jerry Can and press "Run" to start a race.
+    <br>
+    Mark facts correctly/incorrectly to boost/hinder the Orange Jerry Can's progress.
+    <br>
+    If the Orange Jerry Can wins, your scores increases! But if you lose, your score decreases...
+    <br>
+    Press "Reset" to bet and race again and see how high you can make your score!
+  </p>
+    <script src="script.js"></script>
+</body>
+</html>
