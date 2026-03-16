@@ -1,4 +1,3 @@
-// Making Elements Clickable
 function clickable(elem, func) { 
    elem.addEventListener("click", func); 
    elem.style.cursor =  "pointer";
@@ -11,6 +10,7 @@ function unclickable(elem, func) {
 let score = 0;
 let scoreDisplay = document.getElementById("score");
 
+const speedSelect = document.getElementById("speedSelect");
 const runBtn = document.getElementById("run");
 const resetBtn = document.getElementById("reset");
 
@@ -18,6 +18,9 @@ const lanes = document.getElementsByClassName("lane");
 const cans = document.getElementsByClassName("jerrycan");
 const progresses = document.getElementsByClassName("progress");
 let laneWidth = Number((getWidth(lanes[0]) - getWidth(cans[0])).toFixed(2));
+let SPEED = 1;
+
+let racer = -1;
 
 const booth = document.getElementById("bets");
 const bet = document.getElementById("bet-amount");
@@ -30,8 +33,14 @@ let fact = document.getElementById("fact");
 const trueBtn = document.getElementById("trueBtn");
 const falseBtn = document.getElementById("falseBtn");
 const facts = [
-  ["True Fact", true],
-  ["False Fact", false]
+  ["696 million people lack basic access to clean and safe drinking water", true],
+  ["Diseases from dirty water kill more people every year than all forms of violence, including war", true],
+  ["charity: water was founded by a nightclub promoter", true],
+  ["charity: water has brought clean water to over 20 million people", true],
+  ["Operating costs for charity: water are paid for by individual supporters like you", false],
+  ["Men are usually responsible for collecting their household's water", false],
+  ["charity: water's main approach to the global water crisis is well-building", false],
+  ["charity: water has brought clean water to over 70 million people", false]
 ]
 
 // for crypto object randomization
@@ -68,17 +77,17 @@ function guessFunc(bool)
   {
     score += 5;
     scoreDisplay.innerHTML = score;
-    cans[3].style.left = getPosition(cans[3]) + laneWidth/256 + "px";
-    progresses[3].style.width = getWidth(progresses[3]) + laneWidth/256 + "px";
+    cans[racer].style.left = getPosition(cans[racer]) + laneWidth/256 + "px";
+    progresses[racer].style.width = getWidth(progresses[racer]) + laneWidth/256 + "px";
   }
   else
   {
     score -= 5;
     scoreDisplay.innerHTML = score;
-    cans[3].style.left = getPosition(cans[3]) - laneWidth/128 + "px";
-    progresses[3].style.width = getWidth(progresses[3]) - laneWidth/128 + "px";
+    cans[racer].style.left = getPosition(cans[racer]) - laneWidth/128 + "px";
+    progresses[racer].style.width = getWidth(progresses[racer]) - laneWidth/128 + "px";
   }
-  index = crypto.getRandomValues(randArray)[0] % 2;
+  index = crypto.getRandomValues(randArray)[0] % facts.length;
   fact.innerHTML = facts[index][0];
 }
 
@@ -86,13 +95,38 @@ let done = false;
 let index = 0;
 play(); 
 
+
+
+function selectRacer(e)
+{
+  index = e.currentTarget.index;
+  console.log(index);
+  progresses[index].style.boxShadow = "0 0 10px";
+  for (let i = 0; i < cans.length; ++i)
+    if (i != index)
+      progresses[i].style.boxShadow = "none";
+  racer = index;
+}
+
 function play()
 {
+  for (let i = 0; i < cans.length; ++i)
+  {
+    clickable(cans[i], selectRacer);
+    cans[i].index = i;
+    console.log(cans[i].index)
+  }
   runBtn.style.display = "initial";
   trivia.style.display = "none";
   booth.style.display = "flex";
   function run()
   {
+    if (racer == -1)
+    {
+
+      return;
+    }
+      
     unclickable(runBtn, run);
     if (done == false)
     {
@@ -102,35 +136,41 @@ function play()
     else
       return;
   }
-
   clickable(runBtn, run);
-  triviaPhase();
 }
 
 function runFunc()
 {
+  speed = document.getElementById("speed").value;
+  if (speed == "slow")
+    SPEED = 0.5;
+  else if (speed == "fast")
+    SPEED = 2;
+  speedSelect.style.display = "none";
   runBtn.style.display = "none";
   trivia.style.display = "";
   booth.style.display = "none";
   for (let i = 0; i < cans.length; ++i)
+    unclickable(cans[i], selectRacer);
+  for (let i = 0; i < cans.length; ++i)
   {
     if (getPosition(cans[i]) >= laneWidth && done == false)
       {
-        console.log("We have a winner!");
         sip.play();
         done = true;
         progresses[i].style.backgroundColor = "#8BD1CB";
         clickable(resetBtn, resetFunc);
         resetBtn.style.display = "initial";
-        if (i == 3)
+        trivia.style.display = "none";
+        if (i == racer)
         {
-          score += Number(roundBet);
+          score += Number(roundBet) * SPEED;
           scoreDisplay.innerHTML = score;
         }
         else
         {
-          score -= Number(roundBet);
-          scoreDisplay.innerHTML = score > 0 ? score : 0;
+          score = (score - Number(roundBet) > 0) ? (score - Number(roundBet)) : 0;
+          scoreDisplay.innerHTML = score;
         }
       }
     else if (getPosition(cans[i]) < laneWidth && done == false)
@@ -154,10 +194,10 @@ function moveBot(index)
     cans[index].style.left = laneWidth + "px";
     progresses[index].style.width = getPosition(cans[index]) + getWidth(cans[index]) + "px";
   }
-  let distance = crypto.getRandomValues(randArray)[0]/256;
+  let distance = crypto.getRandomValues(randArray)[0]/256 * SPEED;
   while (distance + getPosition(cans[index]) > laneWidth)
   {
-    distance = crypto.getRandomValues(randArray)[0]/256;
+    distance = crypto.getRandomValues(randArray)[0]/256 * SPEED;
     if ((distance + getPosition(cans[index]) + laneWidth/100) >= laneWidth)
       { pushFinish(); return }
 
@@ -177,6 +217,7 @@ function resetFunc()
     progresses[i].style.backgroundColor = "#2E9DF7";
   }
   unclickable(resetBtn, resetFunc);
+  speedSelect.style.display = "";
   resetBtn.style.display = "none";
   play();
 }

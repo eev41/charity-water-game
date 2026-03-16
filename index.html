@@ -9,8 +9,16 @@
 <body>
   
   <h1>Jerry for Position</h1>
-  <h2>Game Prototype for charity: water</h2>
+  <h2>A charity: water Game</h2>
   <div class="controls">
+  <span id="speedSelect">
+    <label for="speed">Speed:</label>
+    <select id="speed">
+      <option value="slow">Slow (0.5x Payout)</option>
+      <option value="norm" selected="selected">Normal</option>
+      <option value="fast">Fast (2x Payout)</option>
+    </select>
+  </span>
     <button id="reset">Reset</button>
     <button id="run">Run</button>
   </div>
@@ -51,14 +59,18 @@
   <p>
     How to Play: 
     <br>
-    Bet on the Orange Jerry Can and press "Run" to start a race.
+    Select a Jerry Can and press "Run" to start a race.
     <br>
-    Mark facts correctly/incorrectly to boost/hinder the Orange Jerry Can's progress.
+    Mark facts correctly/incorrectly to boost/hinder the your Jerry Can's progress.
     <br>
-    If the Orange Jerry Can wins, your scores increases! But if you lose, your score decreases...
+    If your Jerry Can wins, your scores increases! But if your Jerry Can does not win, your score decreases...
     <br>
     Press "Reset" to bet and race again and see how high you can make your score!
   </p>
-    <script src="script.js"></script>
+  <footer>
+    <a href="https://www.charitywater.org/home" target="_blank"><img src="img/cw_logo_horizontal.png" alt="charity: water logo"></a>
+    |<a href="https://www.charitywater.org/donate" target="_blank"> Donate</a>
+  </footer>
+  <script src="script.js"></script>
 </body>
 </html>
