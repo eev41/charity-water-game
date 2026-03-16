@@ -31,7 +31,7 @@ body {
   font-family: "Inter", sans-serif;
   font-style: normal;
   font-optical-sizing: auto;
-  font-weight: 300;
+  font-weight: 200;
   font-size: 18px;
   background-color: #FAF7F0;
 }
@@ -45,7 +45,6 @@ h1, h2 {
 h1 {
   font-size: 2em;
   margin: 30px auto 10px;
-  
 }
 
 h2 {
@@ -61,6 +60,12 @@ h2 {
   right: 10vw;
 }
 
+.controls select {
+  background-color: #FFC907;
+  border: solid 2px #dfdfd7;
+  border-radius: 5px;
+}
+
 .controls #reset {
   display: none;
 }
@@ -73,6 +78,13 @@ button {
   width: fit-content;
   height: 40px;
   margin: auto;
+  transition: hover 2s ease;`   
+}
+
+button:hover,
+button:focus,
+button:active {
+  background-color: #ffc90779;
 }
 
 .racetrack {
@@ -186,9 +198,33 @@ h4 {
 
 p {
   text-align: center;
-  margin: 0 10vw 50px;
+  margin: 0 10vw 20px;
   line-height: 1.5; 
   list-style-type: disc;
+}
+
+footer {
+  line-height: 30px;
+  height: 30px;
+  margin: 30px 20px 15px;
+  scale: 0.8;
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  align-items: end;
+}
+
+footer a, img {
+  height: inherit;
+}
+
+footer a {
+  font-size: 1.4em;
+  color: #000;
+}
+
+footer a:hover, a:focus, a:active {
+  color: #FFC907;
 }
 
 @media screen and (max-width: 720px) {
@@ -216,6 +252,11 @@ p {
     right: initial;
     display: block;
     position: relative;
+  }
+
+  .controls select {
+    display: inline;
+    margin: 10px auto;
   }
 
   .racetrack {
